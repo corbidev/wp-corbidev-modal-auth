@@ -1,0 +1,13 @@
+@import './components/base.css';
+@import './components/modal.css';
+
+
+/*
+|--------------------------------------------------------------------------
+| 2️⃣ Tailwind layers
+|--------------------------------------------------------------------------
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

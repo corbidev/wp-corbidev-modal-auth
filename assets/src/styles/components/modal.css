@@ -1,0 +1,30 @@
+@layer components {
+
+  .cda-modal {
+    @apply fixed inset-0 flex items-center justify-center bg-black/40;
+  }
+
+  .cda-card {
+    @apply w-full max-w-md p-6 rounded-xl shadow-xl;
+    background-color: var(--cda-bg);
+  }
+
+  .cda-title {
+    @apply text-xl font-semibold mb-4;
+  }
+
+  .cda-input {
+    @apply w-full mb-3 p-2 border rounded-md;
+  }
+
+  .cda-button {
+    @apply w-full py-2 rounded-md font-medium transition;
+    background-color: var(--cda-primary);
+    color: var(--cda-on-primary);
+  }
+
+  .cda-error {
+    @apply mt-3 text-sm text-red-500;
+  }
+
+}

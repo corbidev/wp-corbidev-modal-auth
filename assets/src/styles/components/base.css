@@ -1,0 +1,9 @@
+:root {
+
+  --cda-body-bg: var(--wp--preset--color--background, #ffffff);
+  --cda-body-text: var(--wp--preset--color--foreground, #111827);
+
+  --cda-primary: color-mix(in srgb, var(--cda-body-text) 70%, black);
+  --cda-bg: color-mix(in srgb, var(--cda-body-bg) 95%, white);
+  --cda-on-primary: white;
+}
