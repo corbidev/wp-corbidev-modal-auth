@@ -4,7 +4,7 @@
  * Plugin URI:        https://github.com/CorbiDev/wp-corbidev-modal-auth
  * Depot Github:      wp-corbidev-modal-auth
  * Description:       Modal authentication Vue + Vite + Tailwind.
- * Version:           2.0.3
+ * Version:           2.0.5
  * Author:            CorbiDev
  * Author URI:        https://github.com/CorbiDev
  *

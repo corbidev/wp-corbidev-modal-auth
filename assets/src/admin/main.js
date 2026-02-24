@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import AdminApp from './App.vue'
 import '@styles/tailwind.css'
 
-createApp(App).mount('#cda-admin-app')
+
+createApp(AdminApp).mount('#corbidev-modal-auth-admin-app')
