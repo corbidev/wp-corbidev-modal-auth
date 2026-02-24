@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       input: {
         app: path.resolve(__dirname, 'assets/src/main.js'),
+        admin: path.resolve(__dirname, 'assets/src/admin/main.js'),
       }
     }
   },
