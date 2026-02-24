@@ -10,4 +10,6 @@ class Plugin {
         (new Assets())->register();
         require_once CDA_PLUGIN_PATH . 'public/mount.php';
     }
+
+    (new Admin())->register();
 }

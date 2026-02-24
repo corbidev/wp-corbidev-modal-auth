@@ -4,7 +4,7 @@
  * Plugin URI:        https://github.com/CorbiDev/wp-corbidev-modal-auth
  * Depot Github:      wp-corbidev-modal-auth
  * Description:       Modal authentication Vue + Vite + Tailwind.
- * Version:           2.0.0
+ * Version:           2.0.2
  * Author:            CorbiDev
  * Author URI:        https://github.com/CorbiDev
  *
@@ -28,5 +28,27 @@ if (!defined('ABSPATH')) {
 define('CDA_VERSION', '2.0.0');
 define('CDA_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('CDA_PLUGIN_URL', plugin_dir_url(__FILE__));
+
+
+/*
+|--------------------------------------------------------------------------
+| Charger uniquement ce qui est nécessaire à l'activation
+|--------------------------------------------------------------------------
+*/
+
+require_once CDA_PLUGIN_PATH . 'includes/autoload.php';
+
+use Corbidev\ModalAuth\Core\Installer;
+
+register_activation_hook(
+    __FILE__,
+    [Installer::class, 'activate']
+);
+
+/*
+|--------------------------------------------------------------------------
+| Bootstrap runtime
+|--------------------------------------------------------------------------
+*/
 
 require_once CDA_PLUGIN_PATH . 'loader/bootstrap.php';

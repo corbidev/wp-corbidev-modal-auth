@@ -1,7 +1,15 @@
 <?php
 
+if (!defined('ABSPATH')) exit;
+
+/**
+ * Charge l'autoloader interne.
+ */
+
+
 use Corbidev\ModalAuth\Core\Plugin;
 
-require_once CDA_PLUGIN_PATH . 'includes/core/Plugin.php';
-
+/**
+ * Initialise le plugin.
+ */
 (new Plugin())->init();

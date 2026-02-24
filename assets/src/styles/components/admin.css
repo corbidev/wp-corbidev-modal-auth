@@ -1,0 +1,7 @@
+@layer components {
+
+  .cda-admin-card {
+    @apply bg-white p-6 rounded-xl shadow-md;
+  }
+
+}
