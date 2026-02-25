@@ -1,12 +1,12 @@
 <template>
-  <div class="space-y-6">
+  <div class="space-y-4">
     <div class="cda-divider"></div>
 
     <h3 class="cda-subtitle">{{ t("floating_button_settings") }}</h3>
 
     <div class="space-y-2">
       <label class="cda-label">{{ t("floating_position") }}</label>
-      <div class="grid grid-cols-2 gap-2 text-sm">
+      <div class="grid grid-cols-2 gap-2 text-sm w-xs">
         <label class="flex items-center gap-2">
           <input
             v-model="form.floating_position"
@@ -42,10 +42,10 @@
       </div>
     </div>
 
-    <div class="space-y-3">
+    <div class="space-y-2">
       <label class="cda-label">{{ t("floating_size") }}</label>
 
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
         <div>
           <p class="font-medium mb-2">{{ t("mobile") }}</p>
           <div class="space-y-1 text-sm">
@@ -150,7 +150,7 @@
       </p>
     </div>
 
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
       <div class="space-y-2">
         <label class="cda-label">{{ t("floating_label_login") }}</label>
         <input

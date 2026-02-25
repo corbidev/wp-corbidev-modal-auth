@@ -1,5 +1,5 @@
 var _a, _b;
-import { c as computed, r as ref, u as useI18n, o as onMounted, a as openBlock, b as createElementBlock, t as toDisplayString, d as unref, e as createCommentVNode, f as createBaseVNode, w as withModifiers, g as withDirectives, v as vModelText, h as vModelCheckbox, i as createBlock, j as createApp } from "./tailwind-Ce-F1_R8.js";
+import { c as computed, r as ref, u as useI18n, o as onMounted, a as openBlock, b as createElementBlock, t as toDisplayString, d as unref, e as createCommentVNode, f as createBaseVNode, w as withModifiers, g as withDirectives, v as vModelText, h as vModelCheckbox, i as createBlock, j as createApp } from "./tailwind-DazRg6K8.js";
 const BASE_URL = ((_a = window.CorbidevModalAuth) == null ? void 0 : _a.restUrl) || "";
 const NONCE = ((_b = window.CorbidevModalAuth) == null ? void 0 : _b.nonce) || "";
 async function request(endpoint, method = "GET", body = null) {
@@ -300,4 +300,4 @@ const _sfc_main = {
   }
 };
 createApp(_sfc_main).mount("#cda-app");
-//# sourceMappingURL=app-CPEmEMDF.js.map
+//# sourceMappingURL=app-Bc8uiHq8.js.map

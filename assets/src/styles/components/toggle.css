@@ -1,9 +1,10 @@
 @layer components {
 
   .cda-toggle {
-    @apply relative w-12 h-6 rounded-full transition cursor-pointer;
+    @apply relative w-10 h-5 rounded-full transition cursor-pointer;
     background: color-mix(in srgb, var(--cda-body-text) 25%, white);
-      box-shadow: inset 0 1px 2px color-mix(in srgb, var(--cda-body-text) 15%, transparent);
+    box-shadow: inset 0 1px 2px color-mix(in srgb, var(--cda-body-text) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--cda-border) 85%, transparent);
   }
 
   .cda-toggle--active {
@@ -13,12 +14,12 @@
   }
 
   .cda-toggle-thumb {
-    @apply absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition;
+    @apply absolute top-[0.12rem] left-0.5 w-4 h-4 bg-white rounded-full transition;
     box-shadow: 0 1px 6px color-mix(in srgb, var(--cda-body-text) 22%, transparent);
   }
 
   .cda-toggle--active .cda-toggle-thumb {
-    @apply translate-x-6;
+    @apply translate-x-5;
   }
 
 }
