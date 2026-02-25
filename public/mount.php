@@ -1,5 +1,6 @@
 <?php
-
-add_action('wp_footer', function () {
-    echo '<div id="cda-app"></div>';
-});
+if (!defined('ABSPATH')) {
+    exit;
+}
+?>
+<div id="cda-app"></div>

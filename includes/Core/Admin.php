@@ -41,7 +41,7 @@ class Admin
             'cda-admin-app',
             'CDA_ADMIN',
             [
-                'settings' => Settings::get(),
+                'settings' => (new Settings())->get(),
                 'nonce' => wp_create_nonce('wp_rest')
             ]
         );

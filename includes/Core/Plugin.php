@@ -10,6 +10,7 @@ class Plugin
 {
     private Settings $settings;
     private Rest $rest;
+    private Assets $assets;
 
     /**
      * Initialisation globale
@@ -18,6 +19,9 @@ class Plugin
     {
         $this->settings = new Settings();
         $this->settings->init();
+
+        $this->assets = new Assets();
+        $this->assets->register();
 
         $options = $this->settings->get();
 
@@ -43,18 +47,24 @@ class Plugin
 
         add_filter('login_redirect', [$this, 'redirectAfterLogin'], 10, 3);
         add_filter('logout_redirect', [$this, 'redirectAfterLogout'], 10, 3);
+        add_action('wp_footer', [$this, 'renderFrontendMount']);
         add_action('admin_menu', function () {
-    add_menu_page(
-        'CorbiDev Modal Auth',
-        'Modal Auth',
-        'manage_options',
-        'corbidev-modal-auth',
-        function () {
-            include plugin_dir_path(__FILE__) . '../../admin/pages/mount.php';
-        },
-        'dashicons-lock'
-    );
-});
+            add_menu_page(
+                'CorbiDev Modal Auth',
+                'Modal Auth',
+                'manage_options',
+                'corbidev-modal-auth',
+                function () {
+                    include plugin_dir_path(__FILE__) . '../../admin/pages/mount.php';
+                },
+                'dashicons-lock'
+            );
+        });
+    }
+
+    public function renderFrontendMount(): void
+    {
+        include plugin_dir_path(__FILE__) . '../../public/mount.php';
     }
 
     /**

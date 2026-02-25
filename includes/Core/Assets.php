@@ -18,6 +18,23 @@ class Assets
     {
         add_action('wp_enqueue_scripts', [$this, 'enqueueFrontend']);
         add_action('admin_enqueue_scripts', [$this, 'enqueueAdmin']);
+        add_filter('script_loader_tag', [$this, 'filterScriptLoaderTag'], 10, 3);
+    }
+
+    /**
+     * Force les scripts Vite en module
+     */
+    public function filterScriptLoaderTag(string $tag, string $handle, string $src): string
+    {
+        if (!in_array($handle, [self::FRONT_HANDLE, self::ADMIN_HANDLE], true)) {
+            return $tag;
+        }
+
+        if (str_contains($tag, ' type=')) {
+            return $tag;
+        }
+
+        return str_replace('<script ', '<script type="module" ', $tag);
     }
 
     /**
@@ -27,19 +44,7 @@ class Assets
     {
         $manifest = $this->getManifest();
 
-        if (!isset($manifest['assets/src/main.js'])) {
-            return;
-        }
-
-        $entry = $manifest['assets/src/main.js'];
-
-        wp_enqueue_script(
-            self::FRONT_HANDLE,
-            $this->assetUrl($entry['file']),
-            [],
-            null,
-            true
-        );
+        $this->enqueueAssetsForEntry($manifest, 'assets/src/main.js', self::FRONT_HANDLE);
 
         $this->localize(self::FRONT_HANDLE);
     }
@@ -49,27 +54,64 @@ class Assets
      */
     public function enqueueAdmin(string $hook): void
     {
-        if ($hook !== 'toplevel_page_corbidev-modal-auth') {
+        $currentPage = isset($_GET['page']) ? sanitize_key((string) wp_unslash($_GET['page'])) : '';
+
+        if ($hook !== 'toplevel_page_corbidev-modal-auth' && $currentPage !== 'corbidev-modal-auth') {
             return;
         }
 
         $manifest = $this->getManifest();
 
-        if (!isset($manifest['assets/src/admin/admin.js'])) {
+        $this->enqueueAssetsForEntry($manifest, 'assets/src/admin/main.js', self::ADMIN_HANDLE);
+
+        $this->localize(self::ADMIN_HANDLE);
+    }
+
+    /**
+     * Chargement des assets pour une entrée donnée
+     */
+    private function enqueueAssetsForEntry(array $manifest, string $entryKey, string $handle): void
+    {
+        if (!isset($manifest[$entryKey])) {
             return;
         }
 
-        $entry = $manifest['assets/src/admin/admin.js'];
+        $entry = $manifest[$entryKey];
 
+        // JS
         wp_enqueue_script(
-            self::ADMIN_HANDLE,
+            $handle,
             $this->assetUrl($entry['file']),
             [],
             null,
             true
         );
 
-        $this->localize(self::ADMIN_HANDLE);
+        wp_script_add_data($handle, 'type', 'module');
+
+        // CSS in imports
+        if (isset($entry['imports'])) {
+            foreach ($entry['imports'] as $importKey) {
+                if (isset($manifest[$importKey]['css'])) {
+                    foreach ($manifest[$importKey]['css'] as $cssFile) {
+                        wp_enqueue_style(
+                            $handle . '-style-' . md5($cssFile),
+                            $this->assetUrl($cssFile)
+                        );
+                    }
+                }
+            }
+        }
+
+        // CSS in entry
+        if (isset($entry['css'])) {
+            foreach ($entry['css'] as $cssFile) {
+                wp_enqueue_style(
+                    $handle . '-style-' . md5($cssFile),
+                    $this->assetUrl($cssFile)
+                );
+            }
+        }
     }
 
     /**
@@ -122,7 +164,15 @@ class Assets
      */
     private function getManifest(): array
     {
-        $path = plugin_dir_path(dirname(__DIR__, 2)) . 'assets/dist/manifest.json';
+        $basePath = defined('CDA_PLUGIN_PATH')
+            ? CDA_PLUGIN_PATH
+            : plugin_dir_path(dirname(__DIR__, 2));
+
+        $path = $basePath . 'assets/dist/.vite/manifest.json';
+
+        if (!file_exists($path)) {
+            $path = $basePath . 'assets/dist/manifest.json';
+        }
 
         if (!file_exists($path)) {
             return [];
@@ -136,6 +186,10 @@ class Assets
      */
     private function assetUrl(string $file): string
     {
-        return plugin_dir_url(dirname(__DIR__, 2)) . 'assets/dist/' . $file;
+        $baseUrl = defined('CDA_PLUGIN_URL')
+            ? CDA_PLUGIN_URL
+            : plugin_dir_url(dirname(__DIR__, 2));
+
+        return $baseUrl . 'assets/dist/' . $file;
     }
 }

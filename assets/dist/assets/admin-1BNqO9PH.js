@@ -1,4 +1,4 @@
-import { a as openBlock, b as createElementBlock, f as createBaseVNode, n as normalizeClass, u as useI18n, k as reactive, t as toDisplayString, d as unref, l as createVNode, g as withDirectives, v as vModelText, e as createCommentVNode, r as ref, j as createApp } from "./tailwind-DwcF1A3d.js";
+import { a as openBlock, b as createElementBlock, f as createBaseVNode, n as normalizeClass, u as useI18n, k as reactive, t as toDisplayString, d as unref, l as createVNode, g as withDirectives, v as vModelText, e as createCommentVNode, r as ref, j as createApp } from "./tailwind-BJYhuhMy.js";
 const _sfc_main$2 = {
   __name: "ToggleSwitch",
   props: {
@@ -212,4 +212,4 @@ const _sfc_main = {
   }
 };
 createApp(_sfc_main).mount("#corbidev-modal-auth-admin-app");
-//# sourceMappingURL=admin-BPJhiEpN.js.map
+//# sourceMappingURL=admin-1BNqO9PH.js.map
