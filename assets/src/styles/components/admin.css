@@ -157,6 +157,31 @@
           color: var(--cda-muted);
         }
 
+        .cda-password-field {
+          @apply relative;
+        }
+
+        .cda-input--with-toggle {
+          @apply pr-10;
+        }
+
+        .cda-password-toggle {
+          @apply absolute right-2 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-md w-7 h-7 border cursor-pointer transition;
+          border-color: color-mix(in srgb, var(--cda-accent) 30%, var(--cda-border));
+          background: color-mix(in srgb, var(--cda-surface) 92%, white);
+          color: color-mix(in srgb, var(--cda-body-text) 75%, var(--cda-accent));
+        }
+
+        .cda-password-toggle:hover {
+          border-color: color-mix(in srgb, var(--cda-accent) 55%, var(--cda-border));
+          color: var(--cda-accent);
+        }
+
+        .cda-password-toggle svg {
+          width: 15px;
+          height: 15px;
+        }
+
         .cda-floating-labels-grid {
           @apply grid grid-cols-1 gap-3;
         }

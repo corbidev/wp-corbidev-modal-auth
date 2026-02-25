@@ -83,6 +83,9 @@ class Settings
             'rest_max_requests'       => max(1, (int) ($input['rest_max_requests'] ?? $defaults['rest_max_requests'])),
             'rest_window'             => max(10, (int) ($input['rest_window'] ?? $defaults['rest_window'])),
 
+            // Cloudflare
+            'cloudflare_enabled'      => !empty($input['cloudflare_enabled']),
+
             // Floating button
             'floating_position'       => $floatingPosition,
             'floating_size_mobile'    => $floatingSizeMobile,
@@ -119,6 +122,9 @@ class Settings
             // Rate limit REST
             'rest_max_requests'     => 30,
             'rest_window'           => 60,
+
+            // Cloudflare
+            'cloudflare_enabled'    => false,
 
             // Floating button
             'floating_position'     => 'bottom-right',

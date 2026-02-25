@@ -120,6 +120,9 @@ class Assets
     private function localize(string $handle): void
     {
         $settings = (new Settings())->get();
+        if ($handle === self::ADMIN_HANDLE) {
+            $settings['cloudflare_secret'] = (new EnvFile())->getCloudflareSecret();
+        }
 
         wp_localize_script(
             $handle,
@@ -150,6 +153,12 @@ class Assets
                     'lock_time_seconds'     => __('Lock Time (seconds)', 'corbidevmodalauth'),
                     'rest_max_requests'     => __('REST Max Requests', 'corbidevmodalauth'),
                     'rest_window_seconds'   => __('REST Window (seconds)', 'corbidevmodalauth'),
+                    'cloudflare_settings'   => __('Cloudflare', 'corbidevmodalauth'),
+                    'enable_cloudflare'     => __('Enable Cloudflare', 'corbidevmodalauth'),
+                    'cloudflare_secret_key' => __('Cloudflare Secret Key', 'corbidevmodalauth'),
+                    'cloudflare_secret_help' => __('Stored in database on WordPress classic, or in .env on Bedrock-like setups.', 'corbidevmodalauth'),
+                    'show_secret'           => __('Show key', 'corbidevmodalauth'),
+                    'hide_secret'           => __('Hide key', 'corbidevmodalauth'),
                     'floating_button_settings' => __('Floating Button Settings', 'corbidevmodalauth'),
                     'floating_position'      => __('Button Position', 'corbidevmodalauth'),
                     'bottom_right'           => __('Bottom right', 'corbidevmodalauth'),

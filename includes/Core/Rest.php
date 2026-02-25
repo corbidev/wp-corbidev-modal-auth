@@ -193,6 +193,7 @@ public function canManage(): bool
 public function getSettings(): WP_REST_Response
 {
     $settings = (new Settings())->get();
+    $settings['cloudflare_secret'] = (new EnvFile())->getCloudflareSecret();
 
     return new WP_REST_Response($settings, 200);
 }
@@ -200,13 +201,30 @@ public function getSettings(): WP_REST_Response
 public function updateSettings(WP_REST_Request $request): WP_REST_Response
 {
     $data = $request->get_json_params() ?? [];
+    $hasCloudflareSecret = array_key_exists('cloudflare_secret', $data);
+    $cloudflareSecret = $hasCloudflareSecret
+        ? sanitize_text_field((string) $data['cloudflare_secret'])
+        : null;
+    unset($data['cloudflare_secret']);
+
+    $env = new EnvFile();
+
+    if ($hasCloudflareSecret && !$env->setCloudflareSecret((string) $cloudflareSecret)) {
+        return new WP_REST_Response([
+            'success' => false,
+            'code' => 'env_write_failed',
+        ], 500);
+    }
 
     $settings = new Settings();
     $settings->update($data);
 
+    $updatedSettings = $settings->get();
+    $updatedSettings['cloudflare_secret'] = $env->getCloudflareSecret();
+
     return new WP_REST_Response([
         'success' => true,
-        'settings' => $settings->get(),
+        'settings' => $updatedSettings,
     ], 200);
 }
 }
