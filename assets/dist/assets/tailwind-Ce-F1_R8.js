@@ -6283,6 +6283,21 @@ function setChecked(el, { value, oldValue }, vnode) {
     el.checked = checked;
   }
 }
+const vModelRadio = {
+  created(el, { value }, vnode) {
+    el.checked = looseEqual(value, vnode.props.value);
+    el[assignKey] = getModelAssigner(vnode);
+    addEventListener(el, "change", () => {
+      el[assignKey](getValue(el));
+    });
+  },
+  beforeUpdate(el, { value, oldValue }, vnode) {
+    el[assignKey] = getModelAssigner(vnode);
+    if (value !== oldValue) {
+      el.checked = looseEqual(value, vnode.props.value);
+    }
+  }
+};
 function getValue(el) {
   return "_value" in el ? el._value : el.value;
 }
@@ -6359,8 +6374,8 @@ function normalizeContainer(container) {
   return container;
 }
 function useI18n() {
-  var _a;
-  const translations = ((_a = window.CDA_CONFIG) == null ? void 0 : _a.translations) ?? {};
+  var _a, _b;
+  const translations = ((_a = window.CorbidevModalAuth) == null ? void 0 : _a.i18n) ?? ((_b = window.CDA_CONFIG) == null ? void 0 : _b.translations) ?? {};
   const t = (key) => {
     return translations[key] ?? key;
   };
@@ -6377,14 +6392,16 @@ export {
   vModelCheckbox as h,
   createBlock as i,
   createApp as j,
-  reactive as k,
-  createVNode as l,
+  vModelRadio as k,
+  createTextVNode as l,
+  reactive as m,
   normalizeClass as n,
   onMounted as o,
+  createVNode as p,
   ref as r,
   toDisplayString as t,
   useI18n as u,
   vModelText as v,
   withModifiers as w
 };
-//# sourceMappingURL=tailwind-BJYhuhMy.js.map
+//# sourceMappingURL=tailwind-Ce-F1_R8.js.map

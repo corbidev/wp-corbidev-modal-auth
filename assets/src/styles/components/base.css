@@ -6,4 +6,9 @@
   --cda-primary: color-mix(in srgb, var(--cda-body-text) 70%, black);
   --cda-bg: color-mix(in srgb, var(--cda-body-bg) 95%, white);
   --cda-on-primary: white;
+--cda-accent: color-mix(in srgb, var(--wp--preset--color--vivid-purple, #7c3aed) 65%, var(--cda-body-text));
+  --cda-surface: color-mix(in srgb, var(--cda-body-bg) 88%, white);
+  --cda-surface-2: color-mix(in srgb, var(--cda-body-bg) 80%, var(--cda-accent));
+  --cda-border: color-mix(in srgb, var(--cda-body-text) 18%, white);
+  --cda-muted: color-mix(in srgb, var(--cda-body-text) 58%, white);
 }

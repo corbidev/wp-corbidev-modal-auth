@@ -94,6 +94,8 @@
 
     </div>
 
+    <FloatingButtonSettings :form="form" />
+
     <!-- Save -->
     <div class="flex items-center gap-4">
       <button
@@ -119,6 +121,7 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import ToggleSwitch from './ToggleSwitch.vue'
+import FloatingButtonSettings from './FloatingButtonSettings.vue'
 import { useI18n } from '../../composables/useI18n'
 
 const { t } = useI18n()

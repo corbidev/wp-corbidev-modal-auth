@@ -42,6 +42,29 @@ class Settings
     {
         $defaults = $this->getDefaults();
 
+        $allowedPositions = ['bottom-right', 'bottom-left', 'top-right', 'top-left'];
+        $allowedSizes = ['sm', 'md', 'lg'];
+
+        $floatingPosition = sanitize_key((string) ($input['floating_position'] ?? $defaults['floating_position']));
+        if (!in_array($floatingPosition, $allowedPositions, true)) {
+            $floatingPosition = $defaults['floating_position'];
+        }
+
+        $floatingSizeMobile = sanitize_key((string) ($input['floating_size_mobile'] ?? $defaults['floating_size_mobile']));
+        if (!in_array($floatingSizeMobile, $allowedSizes, true)) {
+            $floatingSizeMobile = $defaults['floating_size_mobile'];
+        }
+
+        $floatingSizeTablet = sanitize_key((string) ($input['floating_size_tablet'] ?? $defaults['floating_size_tablet']));
+        if (!in_array($floatingSizeTablet, $allowedSizes, true)) {
+            $floatingSizeTablet = $defaults['floating_size_tablet'];
+        }
+
+        $floatingSizeDesktop = sanitize_key((string) ($input['floating_size_desktop'] ?? $defaults['floating_size_desktop']));
+        if (!in_array($floatingSizeDesktop, $allowedSizes, true)) {
+            $floatingSizeDesktop = $defaults['floating_size_desktop'];
+        }
+
         return [
             // UI
             'enable_modal'            => !empty($input['enable_modal']),
@@ -59,6 +82,18 @@ class Settings
             // Rate limit REST
             'rest_max_requests'       => max(1, (int) ($input['rest_max_requests'] ?? $defaults['rest_max_requests'])),
             'rest_window'             => max(10, (int) ($input['rest_window'] ?? $defaults['rest_window'])),
+
+            // Floating button
+            'floating_position'       => $floatingPosition,
+            'floating_size_mobile'    => $floatingSizeMobile,
+            'floating_size_tablet'    => $floatingSizeTablet,
+            'floating_size_desktop'   => $floatingSizeDesktop,
+            'floating_custom_classes' => sanitize_textarea_field((string) ($input['floating_custom_classes'] ?? $defaults['floating_custom_classes'])),
+            'floating_label_login'    => sanitize_text_field((string) ($input['floating_label_login'] ?? $defaults['floating_label_login'])),
+            'floating_label_logout'   => sanitize_text_field((string) ($input['floating_label_logout'] ?? $defaults['floating_label_logout'])),
+            'show_label_mobile'       => !empty($input['show_label_mobile']),
+            'show_label_tablet'       => !empty($input['show_label_tablet']),
+            'show_label_desktop'      => !empty($input['show_label_desktop']),
         ];
     }
 
@@ -84,6 +119,18 @@ class Settings
             // Rate limit REST
             'rest_max_requests'     => 30,
             'rest_window'           => 60,
+
+            // Floating button
+            'floating_position'     => 'bottom-right',
+            'floating_size_mobile'  => 'md',
+            'floating_size_tablet'  => 'md',
+            'floating_size_desktop' => 'md',
+            'floating_custom_classes' => '',
+            'floating_label_login'  => 'Connexion',
+            'floating_label_logout' => 'Déconnexion',
+            'show_label_mobile'     => true,
+            'show_label_tablet'     => true,
+            'show_label_desktop'    => true,
         ];
     }
 

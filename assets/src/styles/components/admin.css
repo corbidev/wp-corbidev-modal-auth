@@ -1,7 +1,87 @@
 @layer components {
 
+  .cda-admin-page {
+      @apply p-8 rounded-2xl;
+      background:
+        radial-gradient(circle at top right, color-mix(in srgb, var(--cda-accent) 16%, transparent) 0%, transparent 45%),
+        linear-gradient(180deg, color-mix(in srgb, var(--cda-surface-2) 26%, var(--cda-body-bg)) 0%, var(--cda-body-bg) 55%);
+    }
   .cda-admin-card {
-    @apply bg-white p-6 rounded-xl shadow-md;
+    @apply p-8 rounded-2xl;
+      border: 1px solid var(--cda-border);
+      background: linear-gradient(180deg,
+          color-mix(in srgb, var(--cda-surface) 75%, white) 0%,
+          color-mix(in srgb, var(--cda-surface) 95%, var(--cda-body-bg)) 100%);
+      box-shadow:
+        0 10px 30px color-mix(in srgb, var(--cda-accent) 16%, transparent),
+        0 1px 0 color-mix(in srgb, white 60%, transparent) inset;
+    }
+    
+    .cda-title {
+      @apply text-2xl font-semibold mb-6;
+      color: color-mix(in srgb, var(--cda-body-text) 88%, black);
+    }
+    
+    .cda-subtitle {
+      @apply text-xl font-semibold;
+      color: color-mix(in srgb, var(--cda-accent) 70%, var(--cda-body-text));
+    }
+    
+    .cda-label {
+      @apply text-sm font-medium;
+      color: color-mix(in srgb, var(--cda-body-text) 82%, white);
+    }
+    
+    .cda-divider {
+      @apply h-px w-full my-2;
+      background: linear-gradient(90deg,
+          color-mix(in srgb, var(--cda-accent) 35%, transparent) 0%,
+          color-mix(in srgb, var(--cda-border) 90%, transparent) 50%,
+          color-mix(in srgb, var(--cda-accent) 35%, transparent) 100%);
+    }
+    
+    .cda-input {
+      @apply w-full rounded-xl px-3 py-2 border transition;
+      border-color: var(--cda-border);
+      background: color-mix(in srgb, var(--cda-body-bg) 95%, white);
+      color: var(--cda-body-text);
+    }
+    
+    .cda-input:focus {
+      @apply outline-none ring-2;
+      --tw-ring-color: color-mix(in srgb, var(--cda-accent) 38%, white);
+      border-color: color-mix(in srgb, var(--cda-accent) 48%, white);
+    }
+    
+    .cda-admin-card textarea.cda-input {
+      @apply min-h-24;
+    }
+    
+    .cda-admin-card input[type='radio'],
+    .cda-admin-card input[type='checkbox'] {
+      accent-color: var(--cda-accent);
+    }
+    
+    .cda-admin-card p.text-sm.text-gray-500 {
+      color: var(--cda-muted);
+    }
+    
+    .cda-button {
+      @apply w-full rounded-xl py-3 font-semibold text-white transition;
+      background: linear-gradient(135deg,
+          color-mix(in srgb, var(--cda-accent) 95%, black) 0%,
+          color-mix(in srgb, var(--cda-primary) 85%, var(--cda-accent)) 100%);
+      box-shadow: 0 12px 28px color-mix(in srgb, var(--cda-accent) 28%, transparent);
+    }
+    
+    .cda-button:hover {
+      filter: brightness(1.06);
+    }
+    
+    .cda-button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      box-shadow: none;
   }
 
 }
