@@ -1,31 +1,31 @@
 {
   "_tailwind-!~{003}~.js": {
-    "file": "assets/tailwind-qiCjd9d0.css",
+    "file": "assets/tailwind-B-0Y6WfD.css",
     "src": "_tailwind-!~{003}~.js"
   },
-  "_tailwind-DazRg6K8.js": {
-    "file": "assets/tailwind-DazRg6K8.js",
+  "_tailwind-DqStLozk.js": {
+    "file": "assets/tailwind-DqStLozk.js",
     "name": "tailwind",
     "css": [
-      "assets/tailwind-qiCjd9d0.css"
+      "assets/tailwind-B-0Y6WfD.css"
     ]
   },
   "assets/src/admin/main.js": {
-    "file": "assets/admin-CnyNFmmi.js",
+    "file": "assets/admin-DUll-z8V.js",
     "name": "admin",
     "src": "assets/src/admin/main.js",
     "isEntry": true,
     "imports": [
-      "_tailwind-DazRg6K8.js"
+      "_tailwind-DqStLozk.js"
     ]
   },
   "assets/src/main.js": {
-    "file": "assets/app-Bc8uiHq8.js",
+    "file": "assets/app-DWPQH_nq.js",
     "name": "app",
     "src": "assets/src/main.js",
     "isEntry": true,
     "imports": [
-      "_tailwind-DazRg6K8.js"
+      "_tailwind-DqStLozk.js"
     ]
   }
 }

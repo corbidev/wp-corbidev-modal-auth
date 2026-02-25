@@ -1,5 +1,5 @@
 var _a, _b;
-import { c as computed, r as ref, u as useI18n, o as onMounted, a as openBlock, b as createElementBlock, t as toDisplayString, d as unref, e as createCommentVNode, f as createBaseVNode, w as withModifiers, g as withDirectives, v as vModelText, h as vModelCheckbox, i as createBlock, j as createApp } from "./tailwind-DazRg6K8.js";
+import { c as computed, r as ref, u as useI18n, o as onMounted, a as openBlock, b as createElementBlock, t as toDisplayString, d as unref, e as createCommentVNode, f as createBaseVNode, w as withModifiers, g as withDirectives, v as vModelText, h as vModelCheckbox, i as createBlock, j as createApp } from "./tailwind-DqStLozk.js";
 const BASE_URL = ((_a = window.CorbidevModalAuth) == null ? void 0 : _a.restUrl) || "";
 const NONCE = ((_b = window.CorbidevModalAuth) == null ? void 0 : _b.nonce) || "";
 async function request(endpoint, method = "GET", body = null) {
@@ -121,28 +121,28 @@ function useAuth() {
 const _hoisted_1 = ["disabled"];
 const _hoisted_2 = {
   key: 2,
-  class: "fixed inset-0 flex items-center justify-center bg-black/50 z-50"
+  class: "cda-modal"
 };
-const _hoisted_3 = { class: "relative w-full max-w-md bg-white rounded-2xl shadow-2xl p-8" };
-const _hoisted_4 = { class: "text-2xl font-semibold text-center mb-6" };
+const _hoisted_3 = { class: "cda-modal-card" };
+const _hoisted_4 = { class: "cda-modal-title" };
 const _hoisted_5 = {
   key: 0,
-  class: "mb-4 text-sm text-center text-red-600"
+  class: "cda-modal-error"
 };
 const _hoisted_6 = ["placeholder"];
 const _hoisted_7 = ["placeholder"];
 const _hoisted_8 = {
   key: 0,
-  class: "flex items-center gap-2 text-sm"
+  class: "cda-modal-checkline"
 };
 const _hoisted_9 = ["disabled"];
 const _hoisted_10 = {
   key: 1,
-  class: "text-center text-sm mt-2"
+  class: "cda-modal-linkrow"
 };
 const _hoisted_11 = ["placeholder"];
 const _hoisted_12 = ["disabled"];
-const _hoisted_13 = { class: "text-center text-sm mt-2" };
+const _hoisted_13 = { class: "cda-modal-linkrow" };
 const _sfc_main$1 = {
   __name: "LoginModal",
   setup(__props) {
@@ -201,31 +201,31 @@ const _sfc_main$1 = {
         showLoginButton.value ? (openBlock(), createElementBlock("button", {
           key: 0,
           onClick: open,
-          class: "px-4 py-2 rounded-xl bg-primary text-white hover:opacity-90 transition"
+          class: "cda-trigger cda-trigger--login"
         }, toDisplayString(unref(t)("login")), 1)) : createCommentVNode("", true),
         showLogoutButton.value ? (openBlock(), createElementBlock("button", {
           key: 1,
           onClick: submitLogout,
           disabled: unref(loading2),
-          class: "px-4 py-2 rounded-xl bg-gray-800 text-white hover:opacity-90 transition"
+          class: "cda-trigger cda-trigger--logout"
         }, toDisplayString(unref(t)("logout")), 9, _hoisted_1)) : createCommentVNode("", true),
         isOpen.value ? (openBlock(), createElementBlock("div", _hoisted_2, [
           createBaseVNode("div", _hoisted_3, [
             createBaseVNode("button", {
               onClick: close,
-              class: "absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition"
+              class: "cda-modal-close"
             }, " ✕ "),
             createBaseVNode("h2", _hoisted_4, toDisplayString(mode.value === "login" ? unref(t)("login") : unref(t)("lost_password")), 1),
             unref(errorCode2) ? (openBlock(), createElementBlock("div", _hoisted_5, toDisplayString(unref(t)(unref(errorCode2))), 1)) : createCommentVNode("", true),
             mode.value === "login" ? (openBlock(), createElementBlock("form", {
               key: 1,
               onSubmit: withModifiers(submitLogin, ["prevent"]),
-              class: "space-y-4"
+              class: "cda-modal-form"
             }, [
               withDirectives(createBaseVNode("input", {
                 "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => form.value.username = $event),
                 type: "text",
-                class: "w-full border rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary",
+                class: "cda-modal-input",
                 placeholder: unref(t)("username")
               }, null, 8, _hoisted_6), [
                 [vModelText, form.value.username]
@@ -233,7 +233,7 @@ const _sfc_main$1 = {
               withDirectives(createBaseVNode("input", {
                 "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => form.value.password = $event),
                 type: "password",
-                class: "w-full border rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary",
+                class: "cda-modal-input",
                 placeholder: unref(t)("password")
               }, null, 8, _hoisted_7), [
                 [vModelText, form.value.password]
@@ -250,24 +250,24 @@ const _sfc_main$1 = {
               createBaseVNode("button", {
                 type: "submit",
                 disabled: unref(loading2),
-                class: "w-full py-2 rounded-xl bg-primary text-white hover:opacity-90 transition"
+                class: "cda-modal-submit"
               }, toDisplayString(unref(loading2) ? unref(t)("loading") : unref(t)("login")), 9, _hoisted_9),
               canLostPassword.value ? (openBlock(), createElementBlock("div", _hoisted_10, [
                 createBaseVNode("button", {
                   type: "button",
                   onClick: _cache[3] || (_cache[3] = ($event) => mode.value = "lost"),
-                  class: "text-primary hover:underline"
+                  class: "cda-modal-link"
                 }, toDisplayString(unref(t)("forgot_password")), 1)
               ])) : createCommentVNode("", true)
             ], 32)) : (openBlock(), createElementBlock("form", {
               key: 2,
               onSubmit: withModifiers(submitLostPassword, ["prevent"]),
-              class: "space-y-4"
+              class: "cda-modal-form"
             }, [
               withDirectives(createBaseVNode("input", {
                 "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => lostEmail.value = $event),
                 type: "email",
-                class: "w-full border rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary",
+                class: "cda-modal-input",
                 placeholder: unref(t)("email")
               }, null, 8, _hoisted_11), [
                 [vModelText, lostEmail.value]
@@ -275,13 +275,13 @@ const _sfc_main$1 = {
               createBaseVNode("button", {
                 type: "submit",
                 disabled: unref(loading2),
-                class: "w-full py-2 rounded-xl bg-primary text-white hover:opacity-90 transition"
+                class: "cda-modal-submit"
               }, toDisplayString(unref(loading2) ? unref(t)("loading") : unref(t)("reset_password")), 9, _hoisted_12),
               createBaseVNode("div", _hoisted_13, [
                 createBaseVNode("button", {
                   type: "button",
                   onClick: _cache[5] || (_cache[5] = ($event) => mode.value = "login"),
-                  class: "text-primary hover:underline"
+                  class: "cda-modal-link"
                 }, toDisplayString(unref(t)("back_to_login")), 1)
               ])
             ], 32))
@@ -300,4 +300,4 @@ const _sfc_main = {
   }
 };
 createApp(_sfc_main).mount("#cda-app");
-//# sourceMappingURL=app-Bc8uiHq8.js.map
+//# sourceMappingURL=app-DWPQH_nq.js.map

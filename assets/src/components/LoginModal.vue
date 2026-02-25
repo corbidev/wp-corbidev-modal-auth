@@ -79,7 +79,7 @@ onMounted(async () => {
     <button
       v-if="showLoginButton"
       @click="open"
-      class="px-4 py-2 rounded-xl bg-primary text-white hover:opacity-90 transition"
+      class="cda-trigger cda-trigger--login"
     >
       {{ t('login') }}
     </button>
@@ -89,7 +89,7 @@ onMounted(async () => {
       v-if="showLogoutButton"
       @click="submitLogout"
       :disabled="loading"
-      class="px-4 py-2 rounded-xl bg-gray-800 text-white hover:opacity-90 transition"
+      class="cda-trigger cda-trigger--logout"
     >
       {{ t('logout') }}
     </button>
@@ -97,28 +97,26 @@ onMounted(async () => {
     <!-- Modal -->
     <div
       v-if="isOpen"
-      class="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
+      class="cda-modal"
     >
-      <div
-        class="relative w-full max-w-md bg-white rounded-2xl shadow-2xl p-8"
-      >
+      <div class="cda-modal-card">
         <!-- Close -->
         <button
           @click="close"
-          class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition"
+          class="cda-modal-close"
         >
           ✕
         </button>
 
         <!-- Title -->
-        <h2 class="text-2xl font-semibold text-center mb-6">
+        <h2 class="cda-modal-title">
           {{ mode === 'login' ? t('login') : t('lost_password') }}
         </h2>
 
         <!-- Error -->
         <div
           v-if="errorCode"
-          class="mb-4 text-sm text-center text-red-600"
+          class="cda-modal-error"
         >
           {{ t(errorCode) }}
         </div>
@@ -127,25 +125,25 @@ onMounted(async () => {
         <form
           v-if="mode === 'login'"
           @submit.prevent="submitLogin"
-          class="space-y-4"
+          class="cda-modal-form"
         >
           <input
             v-model="form.username"
             type="text"
-            class="w-full border rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+            class="cda-modal-input"
             :placeholder="t('username')"
           />
 
           <input
             v-model="form.password"
             type="password"
-            class="w-full border rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+            class="cda-modal-input"
             :placeholder="t('password')"
           />
 
           <div
             v-if="canRemember"
-            class="flex items-center gap-2 text-sm"
+            class="cda-modal-checkline"
           >
             <input type="checkbox" v-model="form.remember" />
             <span>{{ t('remember_me') }}</span>
@@ -154,19 +152,19 @@ onMounted(async () => {
           <button
             type="submit"
             :disabled="loading"
-            class="w-full py-2 rounded-xl bg-primary text-white hover:opacity-90 transition"
+            class="cda-modal-submit"
           >
             {{ loading ? t('loading') : t('login') }}
           </button>
 
           <div
             v-if="canLostPassword"
-            class="text-center text-sm mt-2"
+            class="cda-modal-linkrow"
           >
             <button
               type="button"
               @click="mode = 'lost'"
-              class="text-primary hover:underline"
+              class="cda-modal-link"
             >
               {{ t('forgot_password') }}
             </button>
@@ -177,28 +175,28 @@ onMounted(async () => {
         <form
           v-else
           @submit.prevent="submitLostPassword"
-          class="space-y-4"
+          class="cda-modal-form"
         >
           <input
             v-model="lostEmail"
             type="email"
-            class="w-full border rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+            class="cda-modal-input"
             :placeholder="t('email')"
           />
 
           <button
             type="submit"
             :disabled="loading"
-            class="w-full py-2 rounded-xl bg-primary text-white hover:opacity-90 transition"
+            class="cda-modal-submit"
           >
             {{ loading ? t('loading') : t('reset_password') }}
           </button>
 
-          <div class="text-center text-sm mt-2">
+          <div class="cda-modal-linkrow">
             <button
               type="button"
               @click="mode = 'login'"
-              class="text-primary hover:underline"
+              class="cda-modal-link"
             >
               {{ t('back_to_login') }}
             </button>

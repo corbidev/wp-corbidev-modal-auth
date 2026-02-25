@@ -1,30 +1,90 @@
 @layer components {
 
-  .cda-modal {
-    @apply fixed inset-0 flex items-center justify-center bg-black/40;
-  }
+    .cda-trigger {
+        @apply px-4 py-2 rounded-xl text-white transition;
+    }
 
-  .cda-card {
-    @apply w-full max-w-md p-6 rounded-xl shadow-xl;
-    background-color: var(--cda-bg);
-  }
+    .cda-trigger--login {
+        background-color: var(--cda-primary);
+    }
 
-  .cda-title {
-    @apply text-xl font-semibold mb-4;
-  }
+    .cda-trigger--logout {
+        background-color: #1f2937;
+    }
 
-  .cda-input {
-    @apply w-full mb-3 p-2 border rounded-md;
-  }
+    .cda-trigger:hover {
+        opacity: 0.9;
+    }
 
-  .cda-button {
-    @apply w-full py-2 rounded-md font-medium transition;
-    background-color: var(--cda-primary);
-    color: var(--cda-on-primary);
-  }
+    .cda-modal {
+        @apply fixed inset-0 flex items-center justify-center z-50;
+        background-color: rgb(0 0 0 / 0.5);
+    }
 
-  .cda-error {
-    @apply mt-3 text-sm text-red-500;
-  }
+    .cda-modal-card {
+        @apply relative w-full max-w-md p-8 rounded-2xl shadow-2xl;
+        background-color: #ffffff;
+    }
 
+    .cda-modal-close {
+        @apply absolute top-4 right-4 transition;
+        color: #6b7280;
+    }
+
+    .cda-modal-close:hover {
+        color: #374151;
+    }
+
+    .cda-modal-title {
+        @apply text-2xl font-semibold text-center mb-6;
+    }
+
+    .cda-modal-error {
+        @apply mb-4 text-sm text-center;
+        color: #dc2626;
+    }
+
+    .cda-modal-form {
+        @apply space-y-4;
+    }
+
+    .cda-modal-input {
+        @apply w-full border rounded-xl px-4 py-2;
+    }
+
+    .cda-modal-input:focus {
+        @apply outline-none ring-2;
+        --tw-ring-color: var(--cda-primary);
+    }
+
+    .cda-modal-checkline {
+        @apply flex items-center gap-2 text-sm;
+    }
+
+    .cda-modal-submit {
+        @apply w-full py-2 rounded-xl text-white transition;
+        background-color: var(--cda-primary);
+
+        .cda-modal-submit:hover {
+            opacity: 0.9;
+        }
+
+        .cda-modal-linkrow {
+            @apply text-center text-sm mt-2;
+        }
+
+        .cda-modal-link {
+            color: var(--cda-primary);
+        }
+
+        .cda-modal-link:hover {
+            text-decoration: underline;
+        }
+
+        .cda-card {
+            @apply w-full max-w-md p-6 rounded-xl shadow-xl;
+            background-color: var(--cda-bg);
+        }
+
+    }
 }

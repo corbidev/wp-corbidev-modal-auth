@@ -84,12 +84,95 @@
       color: var(--cda-muted);
     }
 
+        .cda-settings-form {
+          @apply space-y-4;
+        }
+
+        .cda-toggle-row-left {
+          @apply flex items-center gap-2;
+        }
+
+        .cda-settings-grid {
+          @apply grid grid-cols-2 gap-3;
+        }
+
+        .cda-settings-actions {
+          @apply flex items-center gap-3 justify-end;
+        }
+
+        .cda-save-success {
+          @apply text-sm;
+          color: #16a34a;
+        }
+
+        .cda-save-error {
+          @apply text-sm;
+          color: #dc2626;
+        }
+
+        .cda-floating-settings {
+          @apply space-y-4;
+        }
+
+        .cda-field-group {
+          @apply space-y-2;
+        }
+
+        .cda-floating-position-grid {
+          @apply grid grid-cols-2 gap-2 max-w-xs;
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+        }
+
+        .cda-option-row {
+          @apply flex items-center gap-2;
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+        }
+
+        .cda-floating-size-grid {
+          @apply grid grid-cols-1 gap-3;
+        }
+
+        @screen md {
+          .cda-floating-size-grid {
+            @apply grid-cols-3;
+          }
+        }
+
+        .cda-size-column {
+          @apply space-y-1;
+        }
+
+        .cda-size-title {
+          @apply font-medium mb-2;
+        }
+
+        .cda-size-options {
+          @apply space-y-1;
+        }
+
+        .cda-help-text {
+          @apply text-sm;
+          color: var(--cda-muted);
+        }
+
+        .cda-floating-labels-grid {
+          @apply grid grid-cols-1 gap-3;
+        }
+
+        @screen md {
+          .cda-floating-labels-grid {
+            @apply grid-cols-2;
+          }
+        }
+
+        .cda-visibility-options {
+          @apply space-y-1;
+        }
     .cda-button {
-      @apply w-full rounded-lg py-2 font-semibold text-white transition;
-      background: linear-gradient(135deg,
-          color-mix(in srgb, var(--cda-accent) 95%, black) 0%,
-          color-mix(in srgb, var(--cda-primary) 85%, var(--cda-accent)) 100%);
-      box-shadow: 0 12px 28px color-mix(in srgb, var(--cda-accent) 28%, transparent);
+      @apply w-[80px] rounded-lg py-2 font-semibold text-white transition border-[0px] cursor-pointer;
+      background: hsl(206, 78%, 33%);
     }
 
     .cda-button:hover {

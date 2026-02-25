@@ -1,13 +1,13 @@
 <template>
-  <div class="space-y-4">
+  <div class="cda-floating-settings">
     <div class="cda-divider"></div>
 
     <h3 class="cda-subtitle">{{ t("floating_button_settings") }}</h3>
 
-    <div class="space-y-2">
+    <div class="cda-field-group">
       <label class="cda-label">{{ t("floating_position") }}</label>
-      <div class="grid grid-cols-2 gap-2 text-sm w-xs">
-        <label class="flex items-center gap-2">
+      <div class="cda-floating-position-grid">
+        <label class="cda-option-row">
           <input
             v-model="form.floating_position"
             type="radio"
@@ -15,7 +15,7 @@
           />
           {{ t("bottom_right") }}
         </label>
-        <label class="flex items-center gap-2">
+        <label class="cda-option-row">
           <input
             v-model="form.floating_position"
             type="radio"
@@ -23,7 +23,7 @@
           />
           {{ t("bottom_left") }}
         </label>
-        <label class="flex items-center gap-2">
+        <label class="cda-option-row">
           <input
             v-model="form.floating_position"
             type="radio"
@@ -31,7 +31,7 @@
           />
           {{ t("top_right") }}
         </label>
-        <label class="flex items-center gap-2">
+        <label class="cda-option-row">
           <input
             v-model="form.floating_position"
             type="radio"
@@ -42,14 +42,14 @@
       </div>
     </div>
 
-    <div class="space-y-2">
+    <div class="cda-field-group">
       <label class="cda-label">{{ t("floating_size") }}</label>
 
-      <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
-        <div>
-          <p class="font-medium mb-2">{{ t("mobile") }}</p>
-          <div class="space-y-1 text-sm">
-            <label class="flex items-center gap-2">
+      <div class="cda-floating-size-grid">
+        <div class="cda-size-column">
+          <p class="cda-size-title">{{ t("mobile") }}</p>
+          <div class="cda-size-options">
+            <label class="cda-option-row">
               <input
                 v-model="form.floating_size_mobile"
                 type="radio"
@@ -57,7 +57,7 @@
               />
               {{ t("small") }}
             </label>
-            <label class="flex items-center gap-2">
+            <label class="cda-option-row">
               <input
                 v-model="form.floating_size_mobile"
                 type="radio"
@@ -65,7 +65,7 @@
               />
               {{ t("medium") }}
             </label>
-            <label class="flex items-center gap-2">
+            <label class="cda-option-row">
               <input
                 v-model="form.floating_size_mobile"
                 type="radio"
@@ -76,10 +76,10 @@
           </div>
         </div>
 
-        <div>
-          <p class="font-medium mb-2">{{ t("tablet") }}</p>
-          <div class="space-y-1 text-sm">
-            <label class="flex items-center gap-2">
+        <div class="cda-size-column">
+          <p class="cda-size-title">{{ t("tablet") }}</p>
+          <div class="cda-size-options">
+            <label class="cda-option-row">
               <input
                 v-model="form.floating_size_tablet"
                 type="radio"
@@ -87,7 +87,7 @@
               />
               {{ t("small") }}
             </label>
-            <label class="flex items-center gap-2">
+            <label class="cda-option-row">
               <input
                 v-model="form.floating_size_tablet"
                 type="radio"
@@ -95,7 +95,7 @@
               />
               {{ t("medium") }}
             </label>
-            <label class="flex items-center gap-2">
+            <label class="cda-option-row">
               <input
                 v-model="form.floating_size_tablet"
                 type="radio"
@@ -106,10 +106,10 @@
           </div>
         </div>
 
-        <div>
-          <p class="font-medium mb-2">{{ t("desktop") }}</p>
-          <div class="space-y-1 text-sm">
-            <label class="flex items-center gap-2">
+        <div class="cda-size-column">
+          <p class="cda-size-title">{{ t("desktop") }}</p>
+          <div class="cda-size-options">
+            <label class="cda-option-row">
               <input
                 v-model="form.floating_size_desktop"
                 type="radio"
@@ -117,7 +117,7 @@
               />
               {{ t("small") }}
             </label>
-            <label class="flex items-center gap-2">
+            <label class="cda-option-row">
               <input
                 v-model="form.floating_size_desktop"
                 type="radio"
@@ -125,7 +125,7 @@
               />
               {{ t("medium") }}
             </label>
-            <label class="flex items-center gap-2">
+            <label class="cda-option-row">
               <input
                 v-model="form.floating_size_desktop"
                 type="radio"
@@ -138,20 +138,20 @@
       </div>
     </div>
 
-    <div class="space-y-2">
+    <div class="cda-field-group">
       <label class="cda-label">{{ t("floating_custom_css") }}</label>
       <textarea
         v-model="form.floating_custom_classes"
         rows="4"
         class="cda-input"
       ></textarea>
-      <p class="text-sm text-gray-500">
+      <p class="cda-help-text">
         {{ t("floating_custom_css_help") }}
       </p>
     </div>
 
-    <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
-      <div class="space-y-2">
+    <div class="cda-floating-labels-grid">
+      <div class="cda-field-group">
         <label class="cda-label">{{ t("floating_label_login") }}</label>
         <input
           v-model="form.floating_label_login"
@@ -160,7 +160,7 @@
         />
       </div>
 
-      <div class="space-y-2">
+      <div class="cda-field-group">
         <label class="cda-label">{{ t("floating_label_logout") }}</label>
         <input
           v-model="form.floating_label_logout"
@@ -170,18 +170,18 @@
       </div>
     </div>
 
-    <div class="space-y-2">
+    <div class="cda-field-group">
       <label class="cda-label">{{ t("floating_label_visibility") }}</label>
-      <div class="space-y-1 text-sm">
-        <label class="flex items-center gap-2">
+      <div class="cda-visibility-options">
+        <label class="cda-option-row">
           <input v-model="form.show_label_mobile" type="checkbox" />
           {{ t("show_label_mobile") }}
         </label>
-        <label class="flex items-center gap-2">
+        <label class="cda-option-row">
           <input v-model="form.show_label_tablet" type="checkbox" />
           {{ t("show_label_tablet") }}
         </label>
-        <label class="flex items-center gap-2">
+        <label class="cda-option-row">
           <input v-model="form.show_label_desktop" type="checkbox" />
           {{ t("show_label_desktop") }}
         </label>

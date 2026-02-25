@@ -1,5 +1,5 @@
 <template>
-  <div class="cda-admin-card space-y-4">
+  <div class="cda-admin-card cda-settings-form">
 
     <h2 class="cda-title">
       {{ t('modal_settings') }}
@@ -7,7 +7,7 @@
 
     <!-- Activation Modal -->
     <div class="cda-toggle-row">
-      <div class="flex items-center gap-2">
+      <div class="cda-toggle-row-left">
         <span class="cda-label">{{ t('enable_modal') }}</span>
         <span class="cda-toggle-state" :class="form.enable_modal ? 'is-on' : 'is-off'">
           {{ form.enable_modal ? 'Actif' : 'Inactif' }}
@@ -17,7 +17,7 @@
     </div>
 
     <!-- Redirect Login -->
-    <div class="space-y-2">
+    <div class="cda-field-group">
       <label class="cda-label">
         {{ t('redirect_after_login') }}
       </label>
@@ -29,7 +29,7 @@
     </div>
 
     <!-- Redirect Logout -->
-    <div class="space-y-2">
+    <div class="cda-field-group">
       <label class="cda-label">
         {{ t('redirect_after_logout') }}
       </label>
@@ -47,7 +47,7 @@
       {{ t('security') }}
     </h3>
 
-    <div class="grid grid-cols-2 gap-3">
+    <div class="cda-settings-grid">
 
       <div>
         <label class="cda-label">
@@ -102,7 +102,7 @@
     <FloatingButtonSettings :form="form" />
 
     <!-- Save -->
-    <div class="flex items-center gap-3">
+    <div class="cda-settings-actions">
       <button
         class="cda-button"
         :disabled="loading"
@@ -111,11 +111,11 @@
         {{ loading ? t('saving') : t('save') }}
       </button>
 
-      <span v-if="saved" class="text-green-600 text-sm">
+      <span v-if="saved" class="cda-save-success">
         {{ t('saved') }}
       </span>
 
-      <span v-if="error" class="text-red-600 text-sm">
+      <span v-if="error" class="cda-save-error">
         {{ t('error') }}
       </span>
     </div>

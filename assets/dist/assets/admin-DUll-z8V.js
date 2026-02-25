@@ -1,4 +1,4 @@
-import { a as openBlock, b as createElementBlock, f as createBaseVNode, n as normalizeClass, u as useI18n, t as toDisplayString, d as unref, g as withDirectives, k as vModelRadio, l as createTextVNode, v as vModelText, h as vModelCheckbox, m as reactive, p as createVNode, e as createCommentVNode, r as ref, j as createApp } from "./tailwind-DazRg6K8.js";
+import { a as openBlock, b as createElementBlock, f as createBaseVNode, n as normalizeClass, u as useI18n, t as toDisplayString, d as unref, g as withDirectives, k as vModelRadio, l as createTextVNode, v as vModelText, h as vModelCheckbox, m as reactive, p as createVNode, e as createCommentVNode, r as ref, j as createApp } from "./tailwind-DqStLozk.js";
 const _sfc_main$3 = {
   __name: "ToggleSwitch",
   props: {
@@ -25,47 +25,50 @@ const _sfc_main$3 = {
     };
   }
 };
-const _hoisted_1$2 = { class: "space-y-4" };
+const _hoisted_1$2 = { class: "cda-floating-settings" };
 const _hoisted_2$1 = { class: "cda-subtitle" };
-const _hoisted_3$1 = { class: "space-y-2" };
+const _hoisted_3$1 = { class: "cda-field-group" };
 const _hoisted_4$1 = { class: "cda-label" };
-const _hoisted_5$1 = { class: "grid grid-cols-2 gap-2 text-sm w-xs" };
-const _hoisted_6$1 = { class: "flex items-center gap-2" };
-const _hoisted_7$1 = { class: "flex items-center gap-2" };
-const _hoisted_8$1 = { class: "flex items-center gap-2" };
-const _hoisted_9$1 = { class: "flex items-center gap-2" };
-const _hoisted_10$1 = { class: "space-y-2" };
+const _hoisted_5$1 = { class: "cda-floating-position-grid" };
+const _hoisted_6$1 = { class: "cda-option-row" };
+const _hoisted_7$1 = { class: "cda-option-row" };
+const _hoisted_8$1 = { class: "cda-option-row" };
+const _hoisted_9$1 = { class: "cda-option-row" };
+const _hoisted_10$1 = { class: "cda-field-group" };
 const _hoisted_11$1 = { class: "cda-label" };
-const _hoisted_12$1 = { class: "grid grid-cols-1 gap-3 md:grid-cols-3" };
-const _hoisted_13$1 = { class: "font-medium mb-2" };
-const _hoisted_14$1 = { class: "space-y-1 text-sm" };
-const _hoisted_15$1 = { class: "flex items-center gap-2" };
-const _hoisted_16$1 = { class: "flex items-center gap-2" };
-const _hoisted_17$1 = { class: "flex items-center gap-2" };
-const _hoisted_18$1 = { class: "font-medium mb-2" };
-const _hoisted_19$1 = { class: "space-y-1 text-sm" };
-const _hoisted_20 = { class: "flex items-center gap-2" };
-const _hoisted_21 = { class: "flex items-center gap-2" };
-const _hoisted_22 = { class: "flex items-center gap-2" };
-const _hoisted_23 = { class: "font-medium mb-2" };
-const _hoisted_24 = { class: "space-y-1 text-sm" };
-const _hoisted_25 = { class: "flex items-center gap-2" };
-const _hoisted_26 = { class: "flex items-center gap-2" };
-const _hoisted_27 = { class: "flex items-center gap-2" };
-const _hoisted_28 = { class: "space-y-2" };
-const _hoisted_29 = { class: "cda-label" };
-const _hoisted_30 = { class: "text-sm text-gray-500" };
-const _hoisted_31 = { class: "grid grid-cols-1 gap-3 md:grid-cols-2" };
-const _hoisted_32 = { class: "space-y-2" };
-const _hoisted_33 = { class: "cda-label" };
-const _hoisted_34 = { class: "space-y-2" };
-const _hoisted_35 = { class: "cda-label" };
-const _hoisted_36 = { class: "space-y-2" };
-const _hoisted_37 = { class: "cda-label" };
-const _hoisted_38 = { class: "space-y-1 text-sm" };
-const _hoisted_39 = { class: "flex items-center gap-2" };
-const _hoisted_40 = { class: "flex items-center gap-2" };
-const _hoisted_41 = { class: "flex items-center gap-2" };
+const _hoisted_12$1 = { class: "cda-floating-size-grid" };
+const _hoisted_13$1 = { class: "cda-size-column" };
+const _hoisted_14$1 = { class: "cda-size-title" };
+const _hoisted_15$1 = { class: "cda-size-options" };
+const _hoisted_16$1 = { class: "cda-option-row" };
+const _hoisted_17$1 = { class: "cda-option-row" };
+const _hoisted_18$1 = { class: "cda-option-row" };
+const _hoisted_19$1 = { class: "cda-size-column" };
+const _hoisted_20 = { class: "cda-size-title" };
+const _hoisted_21 = { class: "cda-size-options" };
+const _hoisted_22 = { class: "cda-option-row" };
+const _hoisted_23 = { class: "cda-option-row" };
+const _hoisted_24 = { class: "cda-option-row" };
+const _hoisted_25 = { class: "cda-size-column" };
+const _hoisted_26 = { class: "cda-size-title" };
+const _hoisted_27 = { class: "cda-size-options" };
+const _hoisted_28 = { class: "cda-option-row" };
+const _hoisted_29 = { class: "cda-option-row" };
+const _hoisted_30 = { class: "cda-option-row" };
+const _hoisted_31 = { class: "cda-field-group" };
+const _hoisted_32 = { class: "cda-label" };
+const _hoisted_33 = { class: "cda-help-text" };
+const _hoisted_34 = { class: "cda-floating-labels-grid" };
+const _hoisted_35 = { class: "cda-field-group" };
+const _hoisted_36 = { class: "cda-label" };
+const _hoisted_37 = { class: "cda-field-group" };
+const _hoisted_38 = { class: "cda-label" };
+const _hoisted_39 = { class: "cda-field-group" };
+const _hoisted_40 = { class: "cda-label" };
+const _hoisted_41 = { class: "cda-visibility-options" };
+const _hoisted_42 = { class: "cda-option-row" };
+const _hoisted_43 = { class: "cda-option-row" };
+const _hoisted_44 = { class: "cda-option-row" };
 const _sfc_main$2 = {
   __name: "FloatingButtonSettings",
   props: {
@@ -128,10 +131,10 @@ const _sfc_main$2 = {
         createBaseVNode("div", _hoisted_10$1, [
           createBaseVNode("label", _hoisted_11$1, toDisplayString(unref(t)("floating_size")), 1),
           createBaseVNode("div", _hoisted_12$1, [
-            createBaseVNode("div", null, [
-              createBaseVNode("p", _hoisted_13$1, toDisplayString(unref(t)("mobile")), 1),
-              createBaseVNode("div", _hoisted_14$1, [
-                createBaseVNode("label", _hoisted_15$1, [
+            createBaseVNode("div", _hoisted_13$1, [
+              createBaseVNode("p", _hoisted_14$1, toDisplayString(unref(t)("mobile")), 1),
+              createBaseVNode("div", _hoisted_15$1, [
+                createBaseVNode("label", _hoisted_16$1, [
                   withDirectives(createBaseVNode("input", {
                     "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => __props.form.floating_size_mobile = $event),
                     type: "radio",
@@ -141,7 +144,7 @@ const _sfc_main$2 = {
                   ]),
                   createTextVNode(" " + toDisplayString(unref(t)("small")), 1)
                 ]),
-                createBaseVNode("label", _hoisted_16$1, [
+                createBaseVNode("label", _hoisted_17$1, [
                   withDirectives(createBaseVNode("input", {
                     "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => __props.form.floating_size_mobile = $event),
                     type: "radio",
@@ -151,7 +154,7 @@ const _sfc_main$2 = {
                   ]),
                   createTextVNode(" " + toDisplayString(unref(t)("medium")), 1)
                 ]),
-                createBaseVNode("label", _hoisted_17$1, [
+                createBaseVNode("label", _hoisted_18$1, [
                   withDirectives(createBaseVNode("input", {
                     "onUpdate:modelValue": _cache[6] || (_cache[6] = ($event) => __props.form.floating_size_mobile = $event),
                     type: "radio",
@@ -163,10 +166,10 @@ const _sfc_main$2 = {
                 ])
               ])
             ]),
-            createBaseVNode("div", null, [
-              createBaseVNode("p", _hoisted_18$1, toDisplayString(unref(t)("tablet")), 1),
-              createBaseVNode("div", _hoisted_19$1, [
-                createBaseVNode("label", _hoisted_20, [
+            createBaseVNode("div", _hoisted_19$1, [
+              createBaseVNode("p", _hoisted_20, toDisplayString(unref(t)("tablet")), 1),
+              createBaseVNode("div", _hoisted_21, [
+                createBaseVNode("label", _hoisted_22, [
                   withDirectives(createBaseVNode("input", {
                     "onUpdate:modelValue": _cache[7] || (_cache[7] = ($event) => __props.form.floating_size_tablet = $event),
                     type: "radio",
@@ -176,7 +179,7 @@ const _sfc_main$2 = {
                   ]),
                   createTextVNode(" " + toDisplayString(unref(t)("small")), 1)
                 ]),
-                createBaseVNode("label", _hoisted_21, [
+                createBaseVNode("label", _hoisted_23, [
                   withDirectives(createBaseVNode("input", {
                     "onUpdate:modelValue": _cache[8] || (_cache[8] = ($event) => __props.form.floating_size_tablet = $event),
                     type: "radio",
@@ -186,7 +189,7 @@ const _sfc_main$2 = {
                   ]),
                   createTextVNode(" " + toDisplayString(unref(t)("medium")), 1)
                 ]),
-                createBaseVNode("label", _hoisted_22, [
+                createBaseVNode("label", _hoisted_24, [
                   withDirectives(createBaseVNode("input", {
                     "onUpdate:modelValue": _cache[9] || (_cache[9] = ($event) => __props.form.floating_size_tablet = $event),
                     type: "radio",
@@ -198,10 +201,10 @@ const _sfc_main$2 = {
                 ])
               ])
             ]),
-            createBaseVNode("div", null, [
-              createBaseVNode("p", _hoisted_23, toDisplayString(unref(t)("desktop")), 1),
-              createBaseVNode("div", _hoisted_24, [
-                createBaseVNode("label", _hoisted_25, [
+            createBaseVNode("div", _hoisted_25, [
+              createBaseVNode("p", _hoisted_26, toDisplayString(unref(t)("desktop")), 1),
+              createBaseVNode("div", _hoisted_27, [
+                createBaseVNode("label", _hoisted_28, [
                   withDirectives(createBaseVNode("input", {
                     "onUpdate:modelValue": _cache[10] || (_cache[10] = ($event) => __props.form.floating_size_desktop = $event),
                     type: "radio",
@@ -211,7 +214,7 @@ const _sfc_main$2 = {
                   ]),
                   createTextVNode(" " + toDisplayString(unref(t)("small")), 1)
                 ]),
-                createBaseVNode("label", _hoisted_26, [
+                createBaseVNode("label", _hoisted_29, [
                   withDirectives(createBaseVNode("input", {
                     "onUpdate:modelValue": _cache[11] || (_cache[11] = ($event) => __props.form.floating_size_desktop = $event),
                     type: "radio",
@@ -221,7 +224,7 @@ const _sfc_main$2 = {
                   ]),
                   createTextVNode(" " + toDisplayString(unref(t)("medium")), 1)
                 ]),
-                createBaseVNode("label", _hoisted_27, [
+                createBaseVNode("label", _hoisted_30, [
                   withDirectives(createBaseVNode("input", {
                     "onUpdate:modelValue": _cache[12] || (_cache[12] = ($event) => __props.form.floating_size_desktop = $event),
                     type: "radio",
@@ -235,8 +238,8 @@ const _sfc_main$2 = {
             ])
           ])
         ]),
-        createBaseVNode("div", _hoisted_28, [
-          createBaseVNode("label", _hoisted_29, toDisplayString(unref(t)("floating_custom_css")), 1),
+        createBaseVNode("div", _hoisted_31, [
+          createBaseVNode("label", _hoisted_32, toDisplayString(unref(t)("floating_custom_css")), 1),
           withDirectives(createBaseVNode("textarea", {
             "onUpdate:modelValue": _cache[13] || (_cache[13] = ($event) => __props.form.floating_custom_classes = $event),
             rows: "4",
@@ -244,11 +247,11 @@ const _sfc_main$2 = {
           }, null, 512), [
             [vModelText, __props.form.floating_custom_classes]
           ]),
-          createBaseVNode("p", _hoisted_30, toDisplayString(unref(t)("floating_custom_css_help")), 1)
+          createBaseVNode("p", _hoisted_33, toDisplayString(unref(t)("floating_custom_css_help")), 1)
         ]),
-        createBaseVNode("div", _hoisted_31, [
-          createBaseVNode("div", _hoisted_32, [
-            createBaseVNode("label", _hoisted_33, toDisplayString(unref(t)("floating_label_login")), 1),
+        createBaseVNode("div", _hoisted_34, [
+          createBaseVNode("div", _hoisted_35, [
+            createBaseVNode("label", _hoisted_36, toDisplayString(unref(t)("floating_label_login")), 1),
             withDirectives(createBaseVNode("input", {
               "onUpdate:modelValue": _cache[14] || (_cache[14] = ($event) => __props.form.floating_label_login = $event),
               type: "text",
@@ -257,8 +260,8 @@ const _sfc_main$2 = {
               [vModelText, __props.form.floating_label_login]
             ])
           ]),
-          createBaseVNode("div", _hoisted_34, [
-            createBaseVNode("label", _hoisted_35, toDisplayString(unref(t)("floating_label_logout")), 1),
+          createBaseVNode("div", _hoisted_37, [
+            createBaseVNode("label", _hoisted_38, toDisplayString(unref(t)("floating_label_logout")), 1),
             withDirectives(createBaseVNode("input", {
               "onUpdate:modelValue": _cache[15] || (_cache[15] = ($event) => __props.form.floating_label_logout = $event),
               type: "text",
@@ -268,10 +271,10 @@ const _sfc_main$2 = {
             ])
           ])
         ]),
-        createBaseVNode("div", _hoisted_36, [
-          createBaseVNode("label", _hoisted_37, toDisplayString(unref(t)("floating_label_visibility")), 1),
-          createBaseVNode("div", _hoisted_38, [
-            createBaseVNode("label", _hoisted_39, [
+        createBaseVNode("div", _hoisted_39, [
+          createBaseVNode("label", _hoisted_40, toDisplayString(unref(t)("floating_label_visibility")), 1),
+          createBaseVNode("div", _hoisted_41, [
+            createBaseVNode("label", _hoisted_42, [
               withDirectives(createBaseVNode("input", {
                 "onUpdate:modelValue": _cache[16] || (_cache[16] = ($event) => __props.form.show_label_mobile = $event),
                 type: "checkbox"
@@ -280,7 +283,7 @@ const _sfc_main$2 = {
               ]),
               createTextVNode(" " + toDisplayString(unref(t)("show_label_mobile")), 1)
             ]),
-            createBaseVNode("label", _hoisted_40, [
+            createBaseVNode("label", _hoisted_43, [
               withDirectives(createBaseVNode("input", {
                 "onUpdate:modelValue": _cache[17] || (_cache[17] = ($event) => __props.form.show_label_tablet = $event),
                 type: "checkbox"
@@ -289,7 +292,7 @@ const _sfc_main$2 = {
               ]),
               createTextVNode(" " + toDisplayString(unref(t)("show_label_tablet")), 1)
             ]),
-            createBaseVNode("label", _hoisted_41, [
+            createBaseVNode("label", _hoisted_44, [
               withDirectives(createBaseVNode("input", {
                 "onUpdate:modelValue": _cache[18] || (_cache[18] = ($event) => __props.form.show_label_desktop = $event),
                 type: "checkbox"
@@ -304,30 +307,30 @@ const _sfc_main$2 = {
     };
   }
 };
-const _hoisted_1$1 = { class: "cda-admin-card space-y-4" };
+const _hoisted_1$1 = { class: "cda-admin-card cda-settings-form" };
 const _hoisted_2 = { class: "cda-title" };
 const _hoisted_3 = { class: "cda-toggle-row" };
-const _hoisted_4 = { class: "flex items-center gap-2" };
+const _hoisted_4 = { class: "cda-toggle-row-left" };
 const _hoisted_5 = { class: "cda-label" };
-const _hoisted_6 = { class: "space-y-2" };
+const _hoisted_6 = { class: "cda-field-group" };
 const _hoisted_7 = { class: "cda-label" };
-const _hoisted_8 = { class: "space-y-2" };
+const _hoisted_8 = { class: "cda-field-group" };
 const _hoisted_9 = { class: "cda-label" };
 const _hoisted_10 = { class: "cda-subtitle" };
-const _hoisted_11 = { class: "grid grid-cols-2 gap-3" };
+const _hoisted_11 = { class: "cda-settings-grid" };
 const _hoisted_12 = { class: "cda-label" };
 const _hoisted_13 = { class: "cda-label" };
 const _hoisted_14 = { class: "cda-label" };
 const _hoisted_15 = { class: "cda-label" };
-const _hoisted_16 = { class: "flex items-center gap-3" };
+const _hoisted_16 = { class: "cda-settings-actions" };
 const _hoisted_17 = ["disabled"];
 const _hoisted_18 = {
   key: 0,
-  class: "text-green-600 text-sm"
+  class: "cda-save-success"
 };
 const _hoisted_19 = {
   key: 1,
-  class: "text-red-600 text-sm"
+  class: "cda-save-error"
 };
 const _sfc_main$1 = {
   __name: "SettingsForm",
@@ -499,4 +502,4 @@ const _sfc_main = {
   }
 };
 createApp(_sfc_main).mount("#corbidev-modal-auth-admin-app");
-//# sourceMappingURL=admin-CnyNFmmi.js.map
+//# sourceMappingURL=admin-DUll-z8V.js.map
