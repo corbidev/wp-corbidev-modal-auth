@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => ({
     outDir: 'assets/dist',
     emptyOutDir: true,
     manifest: true,
-    sourcemap: true,
+    sourcemap: mode !== 'production',
     minify: mode === 'production',
 
     rollupOptions: {
