@@ -12,6 +12,7 @@
             v-model="form.floating_position"
             type="radio"
             value="bottom-right"
+            :disabled="isFieldDisabled('floating_position')"
           />
           {{ t("bottom_right") }}
         </label>
@@ -20,6 +21,7 @@
             v-model="form.floating_position"
             type="radio"
             value="bottom-left"
+            :disabled="isFieldDisabled('floating_position')"
           />
           {{ t("bottom_left") }}
         </label>
@@ -28,6 +30,7 @@
             v-model="form.floating_position"
             type="radio"
             value="top-right"
+            :disabled="isFieldDisabled('floating_position')"
           />
           {{ t("top_right") }}
         </label>
@@ -36,6 +39,7 @@
             v-model="form.floating_position"
             type="radio"
             value="top-left"
+            :disabled="isFieldDisabled('floating_position')"
           />
           {{ t("top_left") }}
         </label>
@@ -54,6 +58,7 @@
                 v-model="form.floating_size_mobile"
                 type="radio"
                 value="sm"
+                :disabled="isFieldDisabled('floating_size_mobile')"
               />
               {{ t("small") }}
             </label>
@@ -62,6 +67,7 @@
                 v-model="form.floating_size_mobile"
                 type="radio"
                 value="md"
+                :disabled="isFieldDisabled('floating_size_mobile')"
               />
               {{ t("medium") }}
             </label>
@@ -70,6 +76,7 @@
                 v-model="form.floating_size_mobile"
                 type="radio"
                 value="lg"
+                :disabled="isFieldDisabled('floating_size_mobile')"
               />
               {{ t("large") }}
             </label>
@@ -84,6 +91,7 @@
                 v-model="form.floating_size_tablet"
                 type="radio"
                 value="sm"
+                :disabled="isFieldDisabled('floating_size_tablet')"
               />
               {{ t("small") }}
             </label>
@@ -92,6 +100,7 @@
                 v-model="form.floating_size_tablet"
                 type="radio"
                 value="md"
+                :disabled="isFieldDisabled('floating_size_tablet')"
               />
               {{ t("medium") }}
             </label>
@@ -100,6 +109,7 @@
                 v-model="form.floating_size_tablet"
                 type="radio"
                 value="lg"
+                :disabled="isFieldDisabled('floating_size_tablet')"
               />
               {{ t("large") }}
             </label>
@@ -114,6 +124,7 @@
                 v-model="form.floating_size_desktop"
                 type="radio"
                 value="sm"
+                :disabled="isFieldDisabled('floating_size_desktop')"
               />
               {{ t("small") }}
             </label>
@@ -122,6 +133,7 @@
                 v-model="form.floating_size_desktop"
                 type="radio"
                 value="md"
+                :disabled="isFieldDisabled('floating_size_desktop')"
               />
               {{ t("medium") }}
             </label>
@@ -130,6 +142,7 @@
                 v-model="form.floating_size_desktop"
                 type="radio"
                 value="lg"
+                :disabled="isFieldDisabled('floating_size_desktop')"
               />
               {{ t("large") }}
             </label>
@@ -144,6 +157,7 @@
         v-model="form.floating_custom_classes"
         rows="4"
         class="cda-input"
+        :disabled="isFieldDisabled('floating_custom_classes')"
       ></textarea>
       <p class="cda-help-text">
         {{ t("floating_custom_css_help") }}
@@ -157,6 +171,7 @@
           v-model="form.floating_label_login"
           type="text"
           class="cda-input"
+          :disabled="isFieldDisabled('floating_label_login')"
         />
       </div>
 
@@ -166,6 +181,7 @@
           v-model="form.floating_label_logout"
           type="text"
           class="cda-input"
+          :disabled="isFieldDisabled('floating_label_logout')"
         />
       </div>
     </div>
@@ -174,15 +190,27 @@
       <label class="cda-label">{{ t("floating_label_visibility") }}</label>
       <div class="cda-visibility-options">
         <label class="cda-option-row">
-          <input v-model="form.show_label_mobile" type="checkbox" />
+          <input
+            v-model="form.show_label_mobile"
+            type="checkbox"
+            :disabled="isFieldDisabled('show_label_mobile')"
+          />
           {{ t("show_label_mobile") }}
         </label>
         <label class="cda-option-row">
-          <input v-model="form.show_label_tablet" type="checkbox" />
+          <input
+            v-model="form.show_label_tablet"
+            type="checkbox"
+            :disabled="isFieldDisabled('show_label_tablet')"
+          />
           {{ t("show_label_tablet") }}
         </label>
         <label class="cda-option-row">
-          <input v-model="form.show_label_desktop" type="checkbox" />
+          <input
+            v-model="form.show_label_desktop"
+            type="checkbox"
+            :disabled="isFieldDisabled('show_label_desktop')"
+          />
           {{ t("show_label_desktop") }}
         </label>
       </div>
@@ -197,6 +225,10 @@ defineProps({
   form: {
     type: Object,
     required: true,
+  },
+  isFieldDisabled: {
+    type: Function,
+    default: () => false,
   },
 });
 

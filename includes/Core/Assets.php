@@ -119,9 +119,11 @@ class Assets
      */
     private function localize(string $handle): void
     {
-        $settings = (new Settings())->get();
+        $settingsService = new Settings();
+        $settings = $settingsService->get();
+        $settings['turnstile_site_key'] = $settingsService->getEffectiveTurnstileSiteKey();
         if ($handle === self::ADMIN_HANDLE) {
-            $settings['cloudflare_secret'] = (new EnvFile())->getCloudflareSecret();
+            $settings['cloudflare_secret'] = $settingsService->getEffectiveCloudflareSecret();
         }
 
         wp_localize_script(
@@ -131,6 +133,7 @@ class Assets
                 'restUrl'  => esc_url_raw(rest_url('corbidev-modal-auth/v1')),
                 'nonce'    => wp_create_nonce('wp_rest'),
                 'settings' => $settings,
+                'multisite' => $settingsService->getMultisiteContext(),
                 'i18n'     => [
                     'login'                 => __('Login', 'corbidevmodalauth'),
                     'logout'                => __('Logout', 'corbidevmodalauth'),
@@ -153,12 +156,21 @@ class Assets
                     'lock_time_seconds'     => __('Lock Time (seconds)', 'corbidevmodalauth'),
                     'rest_max_requests'     => __('REST Max Requests', 'corbidevmodalauth'),
                     'rest_window_seconds'   => __('REST Window (seconds)', 'corbidevmodalauth'),
-                    'cloudflare_settings'   => __('Cloudflare', 'corbidevmodalauth'),
+                    'cloudflare_settings'   => __('Cloudflare Turnstile', 'corbidevmodalauth'),
                     'enable_cloudflare'     => __('Enable Cloudflare', 'corbidevmodalauth'),
-                    'cloudflare_secret_key' => __('Cloudflare Secret Key', 'corbidevmodalauth'),
-                    'cloudflare_secret_help' => __('Stored in database on WordPress classic, or in .env on Bedrock-like setups.', 'corbidevmodalauth'),
+                    'turnstile_site_key'    => __('Turnstile Site Key', 'corbidevmodalauth'),
+                    'cloudflare_secret_key' => __('Turnstile Secret Key', 'corbidevmodalauth'),
+                    'cloudflare_secret_help' => __('Stored in database on WordPress classic. On Bedrock-like setups: main site uses .env (TURNSTILE_SITE_KEY / TURNSTILE_SECRET_KEY), sub-sites use per-site database values.', 'corbidevmodalauth'),
                     'show_secret'           => __('Show key', 'corbidevmodalauth'),
                     'hide_secret'           => __('Hide key', 'corbidevmodalauth'),
+                    'multisite_controls'    => __('Multisite defaults and locks', 'corbidevmodalauth'),
+                    'multisite_default_all_sites' => __('Default for all sites', 'corbidevmodalauth'),
+                    'multisite_lock_main_site' => __('Only editable on main site', 'corbidevmodalauth'),
+                    'multisite_controls_help' => __('Each option can inherit main-site default. Locking disables edits on sub-sites.', 'corbidevmodalauth'),
+                    'multisite_read_only_subsite' => __('Read-only on this sub-site', 'corbidevmodalauth'),
+                    'floating_size_mobile' => __('Button size (mobile)', 'corbidevmodalauth'),
+                    'floating_size_tablet' => __('Button size (tablet)', 'corbidevmodalauth'),
+                    'floating_size_desktop' => __('Button size (desktop)', 'corbidevmodalauth'),
                     'floating_button_settings' => __('Floating Button Settings', 'corbidevmodalauth'),
                     'floating_position'      => __('Button Position', 'corbidevmodalauth'),
                     'bottom_right'           => __('Bottom right', 'corbidevmodalauth'),

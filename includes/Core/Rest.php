@@ -31,55 +31,49 @@ class Rest
     }
 
     /**
-     * Déclaration des routes REST
+     * Declaration des routes REST
      */
     public function registerRoutes(): void
     {
-        // LOGIN (public)
         register_rest_route(self::NAMESPACE, '/login', [
             'methods'             => 'POST',
             'callback'            => [$this, 'login'],
             'permission_callback' => '__return_true',
         ]);
 
-        // LOST PASSWORD (public)
         register_rest_route(self::NAMESPACE, '/lost-password', [
             'methods'             => 'POST',
             'callback'            => [$this, 'lostPassword'],
             'permission_callback' => '__return_true',
         ]);
 
-        // LOGOUT (nonce requis)
         register_rest_route(self::NAMESPACE, '/logout', [
             'methods'             => 'POST',
             'callback'            => [$this, 'logout'],
             'permission_callback' => [$this, 'verifyNonce'],
         ]);
 
-        // SESSION USER
         register_rest_route(self::NAMESPACE, '/me', [
             'methods'             => 'GET',
             'callback'            => [$this, 'currentUser'],
             'permission_callback' => '__return_true',
         ]);
 
-// SETTINGS GET
-register_rest_route(self::NAMESPACE, '/settings', [
-    'methods'             => 'GET',
-    'callback'            => [$this, 'getSettings'],
-    'permission_callback' => [$this, 'canManage'],
-]);
+        register_rest_route(self::NAMESPACE, '/settings', [
+            'methods'             => 'GET',
+            'callback'            => [$this, 'getSettings'],
+            'permission_callback' => [$this, 'canManage'],
+        ]);
 
-// SETTINGS UPDATE
-register_rest_route(self::NAMESPACE, '/settings', [
-    'methods'             => 'POST',
-    'callback'            => [$this, 'updateSettings'],
-    'permission_callback' => [$this, 'canManage'],
-]);
+        register_rest_route(self::NAMESPACE, '/settings', [
+            'methods'             => 'POST',
+            'callback'            => [$this, 'updateSettings'],
+            'permission_callback' => [$this, 'canManage'],
+        ]);
     }
 
     /**
-     * Vérification nonce pour endpoints protégés
+     * Verification nonce pour endpoints proteges
      */
     public function verifyNonce(): bool
     {
@@ -117,7 +111,6 @@ register_rest_route(self::NAMESPACE, '/settings', [
         }
 
         $data = $request->get_json_params() ?? [];
-
         $result = $this->authService->login($data);
 
         return $this->formatResponse($result);
@@ -147,7 +140,6 @@ register_rest_route(self::NAMESPACE, '/settings', [
         }
 
         $data = $request->get_json_params() ?? [];
-
         $result = $this->authService->lostPassword($data);
 
         return $this->formatResponse($result);
@@ -174,57 +166,106 @@ register_rest_route(self::NAMESPACE, '/settings', [
     }
 
     /**
-     * Format standardisé des réponses
+     * Format standardise des reponses
      */
     private function formatResponse(array $result): WP_REST_Response
     {
-        $status = (!empty($result['success']) && $result['success'] === true)
-            ? 200
-            : 400;
-
+        $status = (!empty($result['success']) && $result['success'] === true) ? 200 : 400;
         return new WP_REST_Response($result, $status);
     }
 
-public function canManage(): bool
-{
-    return current_user_can('manage_options');
-}
-
-public function getSettings(): WP_REST_Response
-{
-    $settings = (new Settings())->get();
-    $settings['cloudflare_secret'] = (new EnvFile())->getCloudflareSecret();
-
-    return new WP_REST_Response($settings, 200);
-}
-
-public function updateSettings(WP_REST_Request $request): WP_REST_Response
-{
-    $data = $request->get_json_params() ?? [];
-    $hasCloudflareSecret = array_key_exists('cloudflare_secret', $data);
-    $cloudflareSecret = $hasCloudflareSecret
-        ? sanitize_text_field((string) $data['cloudflare_secret'])
-        : null;
-    unset($data['cloudflare_secret']);
-
-    $env = new EnvFile();
-
-    if ($hasCloudflareSecret && !$env->setCloudflareSecret((string) $cloudflareSecret)) {
-        return new WP_REST_Response([
-            'success' => false,
-            'code' => 'env_write_failed',
-        ], 500);
+    public function canManage(): bool
+    {
+        return current_user_can('manage_options');
     }
 
-    $settings = new Settings();
-    $settings->update($data);
+    public function getSettings(): WP_REST_Response
+    {
+        $settingsService = new Settings();
+        $settings = $settingsService->get();
+        $settings['turnstile_site_key'] = $settingsService->getEffectiveTurnstileSiteKey();
+        $settings['cloudflare_secret'] = $settingsService->getEffectiveCloudflareSecret();
+        $settings['_multisite'] = $settingsService->getMultisiteContext();
 
-    $updatedSettings = $settings->get();
-    $updatedSettings['cloudflare_secret'] = $env->getCloudflareSecret();
+        return new WP_REST_Response($settings, 200);
+    }
 
-    return new WP_REST_Response([
-        'success' => true,
-        'settings' => $updatedSettings,
-    ], 200);
-}
+    public function updateSettings(WP_REST_Request $request): WP_REST_Response
+    {
+        $data = $request->get_json_params() ?? [];
+        $networkControls = isset($data['_multisite_controls']) && is_array($data['_multisite_controls'])
+            ? $data['_multisite_controls']
+            : null;
+        unset($data['_multisite_controls']);
+
+        $hasTurnstileSiteKey = array_key_exists('turnstile_site_key', $data);
+        $submittedSiteKey = $hasTurnstileSiteKey
+            ? sanitize_text_field((string) $data['turnstile_site_key'])
+            : null;
+        unset($data['turnstile_site_key']);
+
+        $hasCloudflareSecret = array_key_exists('cloudflare_secret', $data);
+        $submittedSecret = $hasCloudflareSecret
+            ? sanitize_text_field((string) $data['cloudflare_secret'])
+            : null;
+        unset($data['cloudflare_secret']);
+
+        $settingsService = new Settings();
+
+        $credentialsToPersist = [];
+        if ($hasTurnstileSiteKey) {
+            $credentialsToPersist['turnstile_site_key'] = (string) $submittedSiteKey;
+        }
+        if ($hasCloudflareSecret) {
+            $credentialsToPersist['cloudflare_secret'] = (string) $submittedSecret;
+        }
+
+        if (!empty($credentialsToPersist)) {
+            $env = new EnvFile();
+
+            foreach ($credentialsToPersist as $key => $valueToPersist) {
+                if ($settingsService->isFieldLockedForCurrentSite($key)) {
+                    $valueToPersist = $key === 'turnstile_site_key'
+                        ? $settingsService->getMasterTurnstileSiteKey()
+                        : $settingsService->getMasterCloudflareSecret();
+                    $settingsService->setSiteOverride($key, false);
+                } elseif ($settingsService->isNetworkDefaultEnabled($key) && !is_main_site()) {
+                    $masterValue = $key === 'turnstile_site_key'
+                        ? $settingsService->getMasterTurnstileSiteKey()
+                        : $settingsService->getMasterCloudflareSecret();
+                    $isOverride = !hash_equals($masterValue, $valueToPersist);
+                    $settingsService->setSiteOverride($key, $isOverride);
+
+                    if (!$isOverride) {
+                        $valueToPersist = $masterValue;
+                    }
+                } elseif (is_multisite() && !is_main_site()) {
+                    $settingsService->setSiteOverride($key, false);
+                }
+
+                $saved = $key === 'turnstile_site_key'
+                    ? $env->setTurnstileSiteKey($valueToPersist)
+                    : $env->setCloudflareSecret($valueToPersist);
+
+                if (!$saved) {
+                    return new WP_REST_Response([
+                        'success' => false,
+                        'code' => 'env_write_failed',
+                    ], 500);
+                }
+            }
+        }
+
+        $settingsService->update($data, $networkControls);
+
+        $updatedSettings = $settingsService->get();
+        $updatedSettings['turnstile_site_key'] = $settingsService->getEffectiveTurnstileSiteKey();
+        $updatedSettings['cloudflare_secret'] = $settingsService->getEffectiveCloudflareSecret();
+
+        return new WP_REST_Response([
+            'success' => true,
+            'settings' => $updatedSettings,
+            'multisite' => $settingsService->getMultisiteContext(),
+        ], 200);
+    }
 }

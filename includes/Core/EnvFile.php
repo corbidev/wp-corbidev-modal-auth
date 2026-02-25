@@ -8,8 +8,12 @@ if (!defined('ABSPATH')) {
 
 class EnvFile
 {
-    private const CLOUDFLARE_SECRET_KEY = 'CORBIDEV_CLOUDFLARE_SECRET';
-    private const DB_OPTION_KEY = 'corbidev_modal_auth_cloudflare_secret';
+    private const TURNSTILE_SITE_KEY = 'TURNSTILE_SITE_KEY';
+    private const TURNSTILE_SECRET_KEY = 'TURNSTILE_SECRET_KEY';
+    private const LEGACY_CLOUDFLARE_SECRET_KEY = 'CORBIDEV_CLOUDFLARE_SECRET';
+    private const DB_OPTION_TURNSTILE_SITE_KEY = 'corbidev_modal_auth_turnstile_site_key';
+    private const DB_OPTION_TURNSTILE_SECRET_KEY = 'corbidev_modal_auth_turnstile_secret_key';
+    private const LEGACY_DB_OPTION_CLOUDFLARE_SECRET = 'corbidev_modal_auth_cloudflare_secret';
 
     public function getStorageType(): string
     {
@@ -18,10 +22,101 @@ class EnvFile
 
     public function getCloudflareSecret(): string
     {
+        return $this->getTurnstileSecretKey();
+    }
+
+    public function setCloudflareSecret(string $value): bool
+    {
+        return $this->setTurnstileSecretKey($value);
+    }
+
+    public function getTurnstileSiteKey(): string
+    {
         if ($this->useDatabaseStorage()) {
-            return $this->getCloudflareSecretFromDatabase();
+            return $this->getOptionString(self::DB_OPTION_TURNSTILE_SITE_KEY);
         }
 
+        return $this->getEnvValue(self::TURNSTILE_SITE_KEY);
+    }
+
+    public function setTurnstileSiteKey(string $value): bool
+    {
+        $normalized = trim($value);
+
+        if ($this->useDatabaseStorage()) {
+            return $this->setOptionString(self::DB_OPTION_TURNSTILE_SITE_KEY, $normalized);
+        }
+
+        return $this->setEnvValue(self::TURNSTILE_SITE_KEY, $normalized);
+    }
+
+    public function getTurnstileSecretKey(): string
+    {
+        if ($this->useDatabaseStorage()) {
+            $value = $this->getOptionString(self::DB_OPTION_TURNSTILE_SECRET_KEY);
+            if ($value !== '') {
+                return $value;
+            }
+
+            return $this->getOptionString(self::LEGACY_DB_OPTION_CLOUDFLARE_SECRET);
+        }
+
+        $secret = $this->getEnvValue(self::TURNSTILE_SECRET_KEY);
+        if ($secret !== '') {
+            return $secret;
+        }
+
+        return $this->getEnvValue(self::LEGACY_CLOUDFLARE_SECRET_KEY);
+    }
+
+    public function setTurnstileSecretKey(string $value): bool
+    {
+        $normalized = trim($value);
+
+        if ($this->useDatabaseStorage()) {
+            return $this->setOptionString(self::DB_OPTION_TURNSTILE_SECRET_KEY, $normalized);
+        }
+
+        return $this->setEnvValue(self::TURNSTILE_SECRET_KEY, $normalized);
+    }
+
+    private function useDatabaseStorage(): bool
+    {
+        // In multisite, sub-sites need site-specific credentials.
+        // Their options table is per blog, unlike the shared .env file.
+        if (function_exists('is_multisite') && is_multisite()) {
+            if (!function_exists('is_main_site') || !is_main_site()) {
+                return true;
+            }
+        }
+
+        if (!defined('WP_CONTENT_DIR')) {
+            return false;
+        }
+
+        return strtolower((string) basename((string) WP_CONTENT_DIR)) === 'wp-content';
+    }
+
+    private function getOptionString(string $optionKey): string
+    {
+        $value = get_option($optionKey, '');
+
+        return is_string($value) ? $value : '';
+    }
+
+    private function setOptionString(string $optionKey, string $value): bool
+    {
+        $current = get_option($optionKey, null);
+
+        if (is_string($current) && $current === $value) {
+            return true;
+        }
+
+        return update_option($optionKey, $value, false);
+    }
+
+    private function getEnvValue(string $key): string
+    {
         $path = $this->resolveEnvPath();
 
         if ($path === '' || !file_exists($path)) {
@@ -34,24 +129,18 @@ class EnvFile
             return '';
         }
 
-        return $this->extractEnvValue((string) $content, self::CLOUDFLARE_SECRET_KEY);
+        return $this->extractEnvValue((string) $content, $key);
     }
 
-    public function setCloudflareSecret(string $value): bool
+    private function setEnvValue(string $key, string $value): bool
     {
-        $normalized = trim($value);
-
-        if ($this->useDatabaseStorage()) {
-            return $this->setCloudflareSecretInDatabase($normalized);
-        }
-
         $path = $this->resolveEnvPath();
 
         if ($path === '') {
             return false;
         }
 
-        $line = self::CLOUDFLARE_SECRET_KEY . '=' . $this->encodeEnvValue($normalized);
+        $line = $key . '=' . $this->encodeEnvValue($value);
 
         if (!file_exists($path)) {
             return file_put_contents($path, $line . PHP_EOL) !== false;
@@ -65,7 +154,7 @@ class EnvFile
         $updated = false;
 
         foreach ($lines as $index => $existingLine) {
-            if ($this->isTargetEnvLine($existingLine, self::CLOUDFLARE_SECRET_KEY)) {
+            if ($this->isTargetEnvLine($existingLine, $key)) {
                 $lines[$index] = $line;
                 $updated = true;
                 break;
@@ -83,33 +172,6 @@ class EnvFile
         }
 
         return file_put_contents($path, $output) !== false;
-    }
-
-    private function useDatabaseStorage(): bool
-    {
-        if (!defined('WP_CONTENT_DIR')) {
-            return false;
-        }
-
-        return strtolower((string) basename((string) WP_CONTENT_DIR)) === 'wp-content';
-    }
-
-    private function getCloudflareSecretFromDatabase(): string
-    {
-        $value = get_option(self::DB_OPTION_KEY, '');
-
-        return is_string($value) ? $value : '';
-    }
-
-    private function setCloudflareSecretInDatabase(string $value): bool
-    {
-        $current = get_option(self::DB_OPTION_KEY, null);
-
-        if (is_string($current) && $current === $value) {
-            return true;
-        }
-
-        return update_option(self::DB_OPTION_KEY, $value, false);
     }
 
     private function resolveEnvPath(): string

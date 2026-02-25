@@ -177,9 +177,41 @@
           color: var(--cda-accent);
         }
 
+        .cda-password-toggle:disabled {
+          @apply cursor-not-allowed;
+          opacity: 0.55;
+        }
+
         .cda-password-toggle svg {
           width: 15px;
           height: 15px;
+        }
+
+        .cda-multisite-controls {
+          @apply space-y-3;
+        }
+
+        .cda-multisite-grid{
+          @apply grid grid-cols-3 gap-2;
+        }
+
+        .cda-multisite-row {
+          @apply rounded-lg p-3 space-y-2;
+          border: 1px solid color-mix(in srgb, var(--cda-accent) 18%, var(--cda-border));
+          background: color-mix(in srgb, var(--cda-surface-2) 20%, transparent);
+        }
+
+        .cda-multisite-row-header {
+          @apply flex items-center justify-between gap-3;
+        }
+
+        .cda-multisite-row-options {
+          @apply flex flex-wrap gap-1;
+        }
+
+        .cda-multisite-locked {
+          @apply text-xs font-medium;
+          color: color-mix(in srgb, #b45309 72%, var(--cda-body-text));
         }
 
         .cda-floating-labels-grid {
